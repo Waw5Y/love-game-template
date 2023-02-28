@@ -27,7 +27,7 @@ end
 
 function menu3:keypressed(key)
     if key == "space" then
-        state.switch("timer")
+        state.switch("testing/timer")
     end
 end
 

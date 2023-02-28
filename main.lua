@@ -5,15 +5,15 @@ function love.load()
 	love.filesystem.setIdentity(fileSystemIdentity)
 	logger.info("Game starting")
 	timer.setSecond(1000)
-	loadOptionsSave()
-	state.add("menu", require("states.menu"))
-	state.add("menu2", require("states.menu2"))
-	state.add("menu3", require("states.menu3"))
-	state.add("timer", require("states.timer"))
+	local vsync, fullscreen = loadOptionsSave()
+	state.add("testing/menu", require("states.testing.menu"))
+	state.add("testing/menu2", require("states.testing.menu2"))
+	state.add("testing/menu3", require("states.testing.menu3"))
+	state.add("testing/timer", require("states.testing.timer"))
 	-- if you were to add another state add it before state.init()
 	state.init()
 	-- switch to the state after state.init()
-	state.switch("menu")
+	state.switch("skdjfkjsdfh")
 	if not love.filesystem.getInfo("save") then
 		generateNewGeneralSave("save", {
 			windowTitle = "game"
@@ -23,7 +23,8 @@ function love.load()
 	love.window.setTitle(t.windowTitle)
 	love.window.setMode(800, 600, {
 		resizable = true,
-		vsync = false
+		vsync = vsync,
+		fullscreen = fullscreen
 	})
 end
 

@@ -16,7 +16,7 @@ end
 
 function menu2:keypressed(key)
     if key == "space" then
-        state.switch("menu3")
+        state.switch("testing/menu3")
     end
 end
 

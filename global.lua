@@ -51,6 +51,7 @@ function loadOptionsSave()
 	end
 	love.window.setVSync(saveData.vsync)
 	love.window.setFullscreen(saveData.fullscreen)
+	return saveData.vsync, saveData.fullscreen
 end
 
 function generateNewGeneralSave(name, table)

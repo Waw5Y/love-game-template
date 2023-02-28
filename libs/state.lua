@@ -1,12 +1,21 @@
 ---@diagnostic disable: redundant-parameter, undefined-field
 -- made by Waw5Y
+local font
+local nsl = {
+    text = "No state loaded!!",
+    draw = function(self)
+        if font == nil then
+            font = love.graphics.newFont(32)
+        end
+        love.graphics.print(self.text, font)
+        -- if love.timer.getTime() % 1 > 0.5 then
+        --     love.graphics.print("_", font, font:getWidth(self.text))
+        -- end
+    end
+}
 local self = {
     _backgroundColour = { 0, 0, 0 },
-    _currentState = {
-        draw = function()
-            love.graphics.print("No state loaded", 0, 0)
-        end
-    },
+    _currentState = nsl,
     _addedStates = { {
         tag = "nothing",
         state = {}
@@ -89,7 +98,8 @@ end
 
 function state.init()
     init = true
-    local function null() end
+    local function null()
+    end
 
     local all_callbacks = { 'update' }
     for k in pairs(love.handlers) do
