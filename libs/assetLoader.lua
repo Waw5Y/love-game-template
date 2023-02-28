@@ -1,15 +1,19 @@
-local assetManager = {}
+local assetManager = {
+    isLoading = false
+}
 local multiLoad
 local returnedLoad = {}
 
-function assetManager.load(insert, f)
+function assetManager.load(insert)
+    assetManager.isLoading = true
     returnedLoad = {}
     multilily = lily.loadMulti(insert)
-	multilily:onComplete(function(_, lilies)
+    multilily:onComplete(function(_, lilies)
         for i = 1, #lilies do
-            returnedLoad[#returnedLoad+1] = lilies[i][1]
+            returnedLoad[#returnedLoad + 1] = lilies[i][1]
         end
-	end)
+    end)
+    assetManager.isLoading = false
     return returnedLoad
 end
 

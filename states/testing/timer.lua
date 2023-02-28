@@ -35,7 +35,7 @@ end
 
 function t:keypressed(key)
     if key == "space" then
-        state.switch("testing/menu")
+        state.switch("testing/image")
     end
 end
 
