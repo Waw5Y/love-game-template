@@ -1,6 +1,6 @@
 local logger = {}
 
-function logger.info(...)
+function logger.log(b, ...)
     local p = ""
     for i, v in ipairs({ ... }) do
         p = p .. v
@@ -10,33 +10,19 @@ function logger.info(...)
             end
         end
     end
-    print("[".. os.date("%X") .. "] [INFO] " .. p)
+    print(b .. p)
+end
+
+function logger.info(...)
+    logger.log("[" .. os.date("%X") .. "] [INFO] ", ...)
 end
 
 function logger.warn(...)
-    local p = ""
-    for i, v in ipairs({ ... }) do
-        p = p .. v
-        if #{ ... } > 1 then
-            if i ~= #{ ... } then
-                p = p .. "\t"
-            end
-        end
-    end
-    print("[".. os.date("%X") .. "] [WARN!] " .. p)
+    logger.log("[" .. os.date("%X") .. "] [WARN] ", ...)
 end
 
 function logger.error(...)
-    local p = ""
-    for i, v in ipairs({ ... }) do
-        p = p .. v
-        if #{ ... } > 1 then
-            if i ~= #{ ... } then
-                p = p .. "\t"
-            end
-        end
-    end
-    print("[".. os.date("%X") .. "] [ERROR!] " .. p)
+    logger.log("[" .. os.date("%X") .. "] [ERROR!] ", ...)
 end
 
 return logger
