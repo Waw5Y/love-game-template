@@ -17,6 +17,8 @@ fileSystemIdentity = "very gamer game"
 
 saveData = nil
 
+curFrames = 0
+
 --[[
 	arg1: fullscreen
 	arg2: vsync
@@ -84,6 +86,7 @@ end
 
 -- better floor
 function math.floor(x, n)
+	n = n or 0
 	n = math.pow(10, n or 0)
 	x = x * n
 	if x >= 0 then x = oldfloor(x + 0.5) else x = math.ceil(x - 0.5) end

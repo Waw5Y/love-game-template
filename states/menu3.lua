@@ -13,7 +13,8 @@ end
 
 function menu3:draw()
     love.graphics.setColor(1, 1, 1)
-    love.graphics.print("menu3 testy westy!!!\nSpace to go back to menu1")
+    love.graphics.print("menu3 testy westy!!!\nSpace to go to timer testing\nFPS: " ..
+    math.floor(1 / love.timer.getDelta(), 3) .. "\nFrames: " .. curFrames)
     love.graphics.setColor(vivid.HSLtoRGB(love.timer.getTime() % 1, 1, 0.5))
     love.graphics.rectangle("fill", self.rec.x, self.rec.y, 100, 100)
     love.graphics.rectangle("fill", self.rec2.x, self.rec2.y, 100, 100)
@@ -25,8 +26,9 @@ function menu3:update(dt)
 end
 
 function menu3:keypressed(key)
-    state.switch("menu")
+    if key == "space" then
+        state.switch("timer")
+    end
 end
-
 
 return menu3

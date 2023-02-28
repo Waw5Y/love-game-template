@@ -25,7 +25,6 @@ local state = {
                 error("state.add(tag, state) - tag already exists")
             end
         end
-        print("add new state")
         table.insert(self._addedStates, {
             tag = tag,
             state = state
@@ -36,7 +35,7 @@ local state = {
         end
     end,
     remove = function(tag)
-        print("remove state")
+        assert(init, "Not Initialized")
         for i, v in ipairs(self._addedStates) do
             if v.tag == tag then
                 if v.state.onRemove then
@@ -47,8 +46,17 @@ local state = {
         end
     end,
     current = function()
+        assert(init, "Not Initialized")
         if self._currentState ~= nil then
             return self._currentState
+        end
+    end,
+    get = function(tag)
+        assert(init, "Not Initialized")
+        for i, v in ipairs(self._addedStates) do
+            if v.tag == tag then
+                return v
+            end
         end
     end,
     emit = function(fn, ...)

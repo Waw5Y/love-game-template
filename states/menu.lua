@@ -19,7 +19,9 @@ function menu:draw()
 end
 
 function menu:keypressed(key)
-    state.switch("menu2")
+    if key == "space" then 
+        state.switch("menu2")
+    end
 end
 
 

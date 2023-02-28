@@ -9,6 +9,7 @@ function love.load()
 	state.add("menu", require("states.menu"))
 	state.add("menu2", require("states.menu2"))
 	state.add("menu3", require("states.menu3"))
+	state.add("timer", require("states.timer"))
 	-- if you were to add another state add it before state.init()
 	state.init()
 	-- switch to the state after state.init()
@@ -21,12 +22,18 @@ function love.load()
 	local t = loadGeneralSave("save")
 	love.window.setTitle(t.windowTitle)
 	love.window.setMode(800, 600, {
-		resizable = true
+		resizable = true,
+		vsync = false
 	})
 end
 
 function love.draw()
 	state.emit("draw")
+end
+
+function love.update(dt)
+	curFrames = curFrames + 1
+	timer.update(dt)
 end
 
 function love.quit()

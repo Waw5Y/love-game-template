@@ -35,7 +35,7 @@ function timer.remove(tag)
 end
 
 --- @type function
-local function update(dt)
+function timer.update(dt)
     for i, v in ipairs(timer.timers) do
         v.time = v.time - dt * timer.second
         if v.time <= 0 then
@@ -52,20 +52,6 @@ local function update(dt)
                 table.remove(timer.timers, i)
             end
         end
-    end
-end
-
-local registry = {}
-
-local function null()
-end
-
-local all_callbacks = { 'update' }
-for _, f in ipairs(all_callbacks) do
-    registry[f] = love[f] or null
-    love[f] = function(...)
-        registry[f](...)
-        return update(...)
     end
 end
 
