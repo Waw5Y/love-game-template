@@ -23,7 +23,7 @@ end
 function t:draw()
     love.graphics.setColor(1, 1, 1)
     love.graphics.print(
-        "timer testy westy!!!\nSpace to go back to menu1\ntest of the timer library\nthis updates the rainbow rectangles every 0.5 seconds")
+        "timer testy westy!!!\nSpace to go to image test thing\ntest of the timer library\nthis updates the rainbow rectangles every 0.5 seconds")
     love.graphics.setColor(vivid.HSLtoRGB(love.timer.getTime() % 1, 1, 0.5))
     love.graphics.rectangle("fill", self.rec.x, self.rec.y, 100, 100)
     love.graphics.rectangle("fill", self.rec2.x, self.rec2.y, 100, 100)
