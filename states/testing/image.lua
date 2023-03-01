@@ -2,9 +2,9 @@ local t = {}
 local images = {}
 
 function t:enter()
-    -- load 100 of the same image
+    -- load 1000 of the same image
     local toLoad = {}
-    for i = 1, 100 do
+    for i = 1, 1000 do
         toLoad[#toLoad + 1] = { "newImage", "assets/images/love.png" }
     end
     images = assetLoader.load(toLoad)

@@ -1,23 +1,24 @@
-local assetManager = {
+local assetLoader = {
     isLoading = false
 }
 local multiLoad
 local returnedLoad = {}
 
-function assetManager.load(insert)
-    assetManager.isLoading = true
+function assetLoader.load(insert)
     returnedLoad = {}
-    multilily = lily.loadMulti(insert)
-    multilily:onComplete(function(_, lilies)
+    assetLoader.isLoading = true
+    multiLoad = lily.loadMulti(insert)
+    multiLoad:onComplete(function(_, lilies)
         for i = 1, #lilies do
-            returnedLoad[#returnedLoad + 1] = lilies[i][1]
+            returnedLoad[i] = lilies[i][1]
         end
+        assetLoader.isLoading = false
     end)
-    assetManager.isLoading = false
+    collectgarbage("collect")
     return returnedLoad
 end
 
-function assetManager.returnValues()
+function assetLoader.returnValues()
     if not multiLoad:isComplete() then
         local getCount, getLoadedCount = multiLoad:getCount(), multiLoad:getLoadedCount()
         percent = getLoadedCount / getCount
@@ -26,4 +27,4 @@ function assetManager.returnValues()
     return { 100, 1, 1, true }
 end
 
-return assetManager
+return assetLoader

@@ -35,8 +35,14 @@ end
 
 function love.draw()
 	state.emit("draw")
+	love.graphics.setColor(1, 1, 1)
 	if assetLoader.isLoading then
-		love.graphics.print("assetLoader is running...")
+		local arv = assetLoader.returnValues()
+		love.graphics.print("assetLoader is running...", 0,
+			love.graphics.getHeight() - love.graphics.getFont():getHeight() - 5)
+		-- love.graphics.rectangle("line", 0, love.graphics.getHeight() - 5, 100, 5)
+		love.graphics.line(100, love.graphics.getHeight() - 4, 100, love.graphics.getHeight())
+		love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 5, arv[2] / arv[3] * 100, 5)
 	end
 end
 
@@ -47,6 +53,7 @@ end
 
 function love.quit()
 	logger.warn("Closing")
+	love.window.close()
 	love.audio.stop()
 	lily.quit()
 	return true
