@@ -10,7 +10,7 @@ function logger.log(b, ...)
             end
         end
     end
-    print(b .. p)
+    io.write(b .. p .. "\n")
 end
 
 function logger.info(...)

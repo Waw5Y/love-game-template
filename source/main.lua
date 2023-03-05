@@ -3,6 +3,7 @@ require("global")
 
 function love.load()
 	love.filesystem.setIdentity(fileSystemIdentity)
+	love.filesystem.mount(love.filesystem.getSourceBaseDirectory(), "")
 	logger.info("Game starting")
 	logger.info("Running on LOVE " .. love._version)
 	logger.info("Running on " .. love._os .. " OS")
